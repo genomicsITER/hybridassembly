@@ -5,6 +5,7 @@
 */
 
 include { FASTQC                 } from '../modules/nf-core/fastqc/main'
+include { NANOPLOT               } from '../modules/nf-core/nanoplot/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
 include { paramsSummaryMap       } from 'plugin/nf-validation'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
@@ -20,7 +21,10 @@ include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_hybr
 workflow HYBRIDASSEMBLY {
 
     take:
-    ch_samplesheet // channel: samplesheet read in from --input
+    ch_sample // channel: sample read in from --sample
+    ch_nanopore // channel: nanopore read in from --nanopore
+    ch_illumina_r1 // channel: illumina_r1 read in from --illumina_r1
+    ch_illumina_r2 // channel: illumina_r2 read in from --illumina_r2
 
     main:
 
@@ -28,13 +32,22 @@ workflow HYBRIDASSEMBLY {
     ch_multiqc_files = Channel.empty()
 
     //
+    // MODULE: Run NanoPlot
+    //
+    NANOPLOT (
+        ch_nanopore
+    )
+    ch_multiqc_files = ch_multiqc_files.mix(NANOPLOT.out.txt.collect{it[1]})
+    ch_versions = ch_versions.mix(NANOPLOT.out.versions.first())
+
+    //
     // MODULE: Run FastQC
     //
-    FASTQC (
-        ch_samplesheet
-    )
-    ch_multiqc_files = ch_multiqc_files.mix(FASTQC.out.zip.collect{it[1]})
-    ch_versions = ch_versions.mix(FASTQC.out.versions.first())
+    //FASTQC (
+    //    ch_samplesheet
+    //)
+    //ch_multiqc_files = ch_multiqc_files.mix(FASTQC.out.zip.collect{it[1]})
+    //ch_versions = ch_versions.mix(FASTQC.out.versions.first())
 
     //
     // Collate and save software versions

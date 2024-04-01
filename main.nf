@@ -29,10 +29,6 @@ include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_hybr
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-// TODO nf-core: Remove this line if you don't need a FASTA file
-//   This is an example of how to use getGenomeAttribute() to fetch parameters
-//   from igenomes.config using `--genome`
-params.fasta = getGenomeAttribute('fasta')
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -46,7 +42,10 @@ params.fasta = getGenomeAttribute('fasta')
 workflow NFCORE_HYBRIDASSEMBLY {
 
     take:
-    samplesheet // channel: samplesheet read in from --input
+    sample      // channel: sample name read in from --sample
+    nanopore    // channel: nanopore fastq read in from --nanopore
+    illumina_r1 // channel: nanopore fastq read in from --illumina_r1
+    illumina_r2 // channel: nanopore fastq read in from --illumina_r2
 
     main:
 
@@ -54,7 +53,10 @@ workflow NFCORE_HYBRIDASSEMBLY {
     // WORKFLOW: Run pipeline
     //
     HYBRIDASSEMBLY (
-        samplesheet
+        sample,
+        nanopore,
+        illumina_r1,
+        illumina_r2
     )
 
     emit:
@@ -88,7 +90,10 @@ workflow {
     // WORKFLOW: Run main workflow
     //
     NFCORE_HYBRIDASSEMBLY (
-        PIPELINE_INITIALISATION.out.samplesheet
+        PIPELINE_INITIALISATION.out.sample,
+        PIPELINE_INITIALISATION.out.nanopore,
+        PIPELINE_INITIALISATION.out.illumina_r1,
+        PIPELINE_INITIALISATION.out.illumina_r2,
     )
 
     //
