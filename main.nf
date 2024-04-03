@@ -42,10 +42,7 @@ include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_hybr
 workflow NFCORE_HYBRIDASSEMBLY {
 
     take:
-    sample      // channel: sample name read in from --sample
-    nanopore    // channel: nanopore fastq read in from --nanopore
-    illumina_r1 // channel: nanopore fastq read in from --illumina_r1
-    illumina_r2 // channel: nanopore fastq read in from --illumina_r2
+    samplesheet // channel: samplesheet read in from --input
 
     main:
 
@@ -53,10 +50,7 @@ workflow NFCORE_HYBRIDASSEMBLY {
     // WORKFLOW: Run pipeline
     //
     HYBRIDASSEMBLY (
-        sample,
-        nanopore,
-        illumina_r1,
-        illumina_r2
+        samplesheet
     )
 
     emit:
@@ -90,10 +84,7 @@ workflow {
     // WORKFLOW: Run main workflow
     //
     NFCORE_HYBRIDASSEMBLY (
-        PIPELINE_INITIALISATION.out.sample,
-        PIPELINE_INITIALISATION.out.nanopore,
-        PIPELINE_INITIALISATION.out.illumina_r1,
-        PIPELINE_INITIALISATION.out.illumina_r2,
+        PIPELINE_INITIALISATION.out.samplesheet
     )
 
     //

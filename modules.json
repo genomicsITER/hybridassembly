@@ -5,9 +5,72 @@
         "https://github.com/nf-core/modules.git": {
             "modules": {
                 "nf-core": {
+                    "bwa/index": {
+                        "branch": "master",
+                        "git_sha": "6278bf9afd4a4b2d00fa6052250e73da3d91546f",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "bwa/mem": {
+                        "branch": "master",
+                        "git_sha": "b97197968ac12dde2463fa54541f6350c46f2035",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
                     "fastqc": {
                         "branch": "master",
                         "git_sha": "f4ae1d942bd50c5c0b9bd2de1393ce38315ba57c",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "filtlong": {
+                        "branch": "master",
+                        "git_sha": "b4c8ac68ffcdabac3f63aaa5e7420b175e1d8d76",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "flye": {
+                        "branch": "master",
+                        "git_sha": "3f5420aa22e00bd030a2556dfdffc9e164ec0ec5",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "gatk4/createsequencedictionary": {
+                        "branch": "master",
+                        "git_sha": "d742e3143f2ccb8853c29b35cfcf50b5e5026980",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "gatk4/fastqtosam": {
+                        "branch": "master",
+                        "git_sha": "d742e3143f2ccb8853c29b35cfcf50b5e5026980",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "gatk4/markduplicates": {
+                        "branch": "master",
+                        "git_sha": "194fca815cf594646e638fa5476acbcc296f1850",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "gatk4/mergebamalignment": {
+                        "branch": "master",
+                        "git_sha": "d742e3143f2ccb8853c29b35cfcf50b5e5026980",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "gatk4/samtofastq": {
+                        "branch": "master",
+                        "git_sha": "d742e3143f2ccb8853c29b35cfcf50b5e5026980",
                         "installed_by": [
                             "modules"
                         ]
@@ -22,6 +85,34 @@
                     "nanoplot": {
                         "branch": "master",
                         "git_sha": "a31407dfaf0cb0d04768d5cb439fc6f4523a6981",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "picard/sortsam": {
+                        "branch": "master",
+                        "git_sha": "20b0918591d4ba20047d7e13e5094bcceba81447",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "pilon": {
+                        "branch": "master",
+                        "git_sha": "3f5420aa22e00bd030a2556dfdffc9e164ec0ec5",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "racon": {
+                        "branch": "master",
+                        "git_sha": "3f5420aa22e00bd030a2556dfdffc9e164ec0ec5",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "samtools/index": {
+                        "branch": "master",
+                        "git_sha": "f4596fe0bdc096cf53ec4497e83defdb3a94ff62",
                         "installed_by": [
                             "modules"
                         ]

@@ -1,3 +1,5 @@
+--- UNDER CONSTRUCTION ---
+
 <h1>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/images/nf-core-hybridassembly_logo_dark.png">

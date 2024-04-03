@@ -1,0 +1,48 @@
+name: ratatosk
+description: Hybrid error correction of long reads using colored de Bruijn graphs.
+keywords:
+  - nanopore
+  - illumina
+  - error correction
+  - long reads
+  - short reads
+tools:
+  - filtlong:
+      description: Ratatosk is a de novo error correction tool for erroneous long reads designed for accurate variant calling and assembly. It is based on a compacted and colored de Bruijn graph built from accurate short reads.
+      homepage: https://github.com/DecodeGenetics/Ratatosk
+      tool_dev_url: https://github.com/DecodeGenetics/Ratatosk
+      licence: ["GPL v3"]
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - shortreads:
+      type: file
+      description: fastq file
+      pattern: "*.{fq,fastq,fq.gz,fastq.gz}"
+  - longreads:
+      type: file
+      description: fastq file
+      pattern: "*.{fq,fastq,fq.gz,fastq.gz}"
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+  - reads:
+      type: file
+      description: Corrected (compressed) fastq file
+      pattern: "*.fastq.gz"
+authors:
+  - "@GuillaumeHolley"
+  - "@loraine-gueguen"
+maintainers:
+  - "@GuillaumeHolley"
+  - "@loraine-gueguen"

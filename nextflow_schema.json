@@ -74,6 +74,70 @@
                 }
             }
         },
+        "preprocessing_options": {
+            "title": "Preprocessing options",
+            "type": "object",
+            "description": "Parameters used in functions before assembly",
+            "properties": {
+                "filtlong_min_length": {
+                    "type": "number",
+                    "default": 1000,
+                    "description": "Minimum length threshold",
+                    "help_text": "Example: --min_length 1000"
+                },
+                "filtlong_keep_percent": {
+                    "type": "number",
+                    "default": 90,
+                    "description": "Keep only this percentage of the best reads",
+                    "help_text": "Example: --keep_percent 90"
+                },
+                "filtlong_length_weight": {
+                    "type": "number",
+                    "default": 1,
+                    "description": "Weight given to the length score",
+                    "help_text": "Example: --keep_percent 90"
+                },
+                "filtlong_genome_size": {
+                    "type": "number",
+                    "default": 3000000000,
+                    "description": "Target genome size"
+                }
+                ,
+                "filtlong_cov_min": {
+                    "type": "number",
+                    "default": 15,
+                    "description": "Minimum coverage"
+                },
+                "filtlong_target_bases": {
+                    "type": "number",
+                    "default": 3000000000,
+                    "description": "Target genome size",
+                    "help_text": "Example: --target_bases 3000000000"
+                }
+            }
+        },
+        "assembly_options": {
+            "title": "Assembly options",
+            "type": "object",
+            "description": "Parameters used in assembly and polishing functions",
+            "properties": {
+                "flye_mode": {
+                    "type": "string",
+                    "default": "--nano-corr",
+                    "description": "Type of input reads",
+                    "help_text": "Available options are --pacbio-raw, --pacbio-corr, --pacbio-hifi, --nano-raw, --nano-corr, or --nano-hq"
+                },
+                "flye_genome_size": {
+                    "type": "string",
+                    "description": "Estimated genome size (for example, 5m or 2.6g)"
+                },
+                "flye_iterations": {
+                    "type": "number",
+                    "default": 1,
+                    "description": "Number of polishing iterations"
+                }
+            }
+        },
         "institutional_config_options": {
             "title": "Institutional config options",
             "type": "object",
