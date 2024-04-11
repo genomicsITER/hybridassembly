@@ -120,5 +120,7 @@ You can cite the `nf-core` publication as follows:
 ## Changelog
 
 > May ??, 2024. Make this repository public.
+>
 > April 11, 2024. Added command usage sections.
+>
 > April 1, 2024. Created the initial version of this repository.
