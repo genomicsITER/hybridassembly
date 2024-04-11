@@ -21,17 +21,29 @@ A public repository of **hybrid assembly** pipeline maintained by ITER.
    to nf-core here, in 15-20 seconds. For an example, see https://github.com/nf-core/rnaseq/blob/master/README.md#introduction
 -->
 
-<!-- TODO nf-core: Include a figure that guides the user through the major workflow steps. Many nf-core
-     workflows use the "tube map" design for that. See https://nf-co.re/docs/contributing/design_guidelines#examples for examples.   -->
-<!-- TODO nf-core: Fill in short bullet-pointed list of the default steps in the pipeline -->
+## Pipeline summary
+
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/Simplified pipeline.drawio.svg">
+    <img alt="Hybrid assembly pipeline" src="docs/images/Simplified pipeline.drawio.svg">
+  </picture>
+</h1>
 
 1. Illumina read QC ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
 2. ONT read QC ([`NanoPlot`](https://github.com/wdecoster/NanoPlot))
 3. Quality filtering long reads ([`Filtlong`](https://github.com/rrwick/Filtlong))
 4. Hybrid error correction of long reads ([`Ratatosk`](https://github.com/DecodeGenetics/Ratatosk))
 5. De novo assembler ([`Flye`](https://github.com/fenderglass/Flye))
-6. ...
-7. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
+6. Assembly polishing using long-reads ([`Racon`](https://github.com/isovic/racon))
+7. Assembly polishing using short-reads ([`Pilon`](https://github.com/broadinstitute/pilon))
+8. Purge haplotigs and overlaps ([`Purge_Dups`](https://github.com/dfguan/purge_dups))
+9. Contig correction and scaffolding ([`RagTag`](https://github.com/malonge/RagTag))
+10. Close gaps ([`TGS-GapCloser`](https://github.com/BGI-Qingdao/TGS-GapCloser))
+11. Quality assessment of genome assembly ([`QUAST`](https://quast.sourceforge.net/))
+12. k-mer based assembly evaluation ([`Merqury`](https://github.com/marbl/merqury))
+13. Single-Copy Orthologs based assessment ([`BUSCO`](https://busco.ezlab.org/))
+14. Aggregate QC results ([`MultiQC`](http://multiqc.info/))
 
 ## Usage
 
@@ -112,7 +124,7 @@ You can cite the `nf-core` publication as follows:
 >
 > _Nat Biotechnol._ 2020 Feb 13. doi: [10.1038/s41587-020-0439-x](https://dx.doi.org/10.1038/s41587-020-0439-x).
 
-## Changelog:
+## Changelog
 > May ??, 2024. Make this repository public.
 
 > April 11, 2024. Added command usage sections.
