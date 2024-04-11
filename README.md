@@ -23,7 +23,7 @@ The **hybridassembly** pipeline is built using [Nextflow](https://www.nextflow.i
 2. ONT read QC ([`NanoPlot`](https://github.com/wdecoster/NanoPlot))
 3. Quality filtering long reads ([`Filtlong`](https://github.com/rrwick/Filtlong))
 4. Hybrid error correction of long reads ([`Ratatosk`](https://github.com/DecodeGenetics/Ratatosk))
-5. De novo assembler ([`Flye`](https://github.com/fenderglass/Flye))
+5. *De novo* assembler ([`Flye`](https://github.com/fenderglass/Flye))
 6. Assembly polishing using long-reads ([`Racon`](https://github.com/isovic/racon))
 7. Assembly polishing using short-reads ([`Pilon`](https://github.com/broadinstitute/pilon))
 8. Purge haplotigs and overlaps ([`Purge_Dups`](https://github.com/dfguan/purge_dups))
