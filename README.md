@@ -6,15 +6,9 @@ A public repository of **hybrid assembly** pipeline maintained by ITER.
 
 ## Introduction
 
-**HybridAssembly** is a bioinformatics pipeline that performs preprocessing, *de novo* assembly, polishing and evaluation steps to obtain high-quality human genomes using both, long-reads from Oxford Nanopore Sequencing (ONT) and short-reads from Illumina.
+**hybridassembly** is a bioinformatics pipeline that performs preprocessing, *de novo* assembly, polishing and evaluation steps to obtain high-quality human genomes using both, long-reads from Oxford Nanopore Sequencing (ONT) and short-reads from Illumina. It takes a samplesheet with ONT and Illumina FASTQ files as input, perform quality control (QC), filtering, error-correction, assembly, polishing with self long-reads and short-reads, and post-assembly curation, among assembly evaluations with different tools.
 
-The HybridAssembly pipeline is built using [Nextflow](https://www.nextflow.io/), following [nf-core](https://nf-co.re) guidelines and templates.
-
-<!-- TODO nf-core:
-   Complete this sentence with a 2-3 sentence summary of what types of data the pipeline ingests, a brief overview of the
-   major pipeline sections and the types of output it produces. You're giving an overview to someone new
-   to nf-core here, in 15-20 seconds. For an example, see https://github.com/nf-core/rnaseq/blob/master/README.md#introduction
--->
+The **hybridassembly** pipeline is built using [Nextflow](https://www.nextflow.io/), following [nf-core](https://nf-co.re) guidelines and templates.
 
 ## Pipeline summary
 
@@ -62,8 +56,6 @@ Each row represents a sample with both paired-end FASTQ files (gzipped) and ONT 
 -->
 
 Now, you can run the pipeline using:
-
-<!-- TODO nf-core: update the following command to include all required parameters for a minimal example -->
 
 ```bash
 nextflow run main.nf \
