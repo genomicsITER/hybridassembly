@@ -113,5 +113,8 @@ You can cite the `nf-core` publication as follows:
 > _Nat Biotechnol._ 2020 Feb 13. doi: [10.1038/s41587-020-0439-x](https://dx.doi.org/10.1038/s41587-020-0439-x).
 
 ## Changelog:
-> May ??, 2024: Make this repository public.
+> May ??, 2024. Make this repository public.
+
+> April 11, 2024. Added command usage sections.
+
 > April 1, 2024. Created the initial version of this repository.
