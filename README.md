@@ -6,7 +6,9 @@ A public repository of **hybrid assembly** pipeline maintained by ITER.
 
 ## Introduction
 
-**nf-core/hybridassembly** is a bioinformatics pipeline that ...
+**HybridAssembly** is a bioinformatics pipeline that performs preprocessing, *de novo* assembly, polishing and evaluation steps to obtain high-quality human genomes using both, long-reads from Oxford Nanopore Sequencing (ONT) and short-reads from Illumina.
+
+The HybridAssembly pipeline is built using [Nextflow](https://www.nextflow.io/), following [nf-core](https://nf-co.re) guidelines and templates.
 
 <!-- TODO nf-core:
    Complete this sentence with a 2-3 sentence summary of what types of data the pipeline ingests, a brief overview of the
