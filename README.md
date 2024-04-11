@@ -6,7 +6,7 @@ A public repository of **hybrid *de novo* assembly** pipeline maintained by ITER
 
 ## Introduction
 
-**hybridassembly** is a bioinformatics pipeline that performs preprocessing, *de novo* assembly, polishing and evaluation steps to obtain high-quality human genomes using both, long-reads from Oxford Nanopore Sequencing (ONT) and short-reads from Illumina. It takes a samplesheet with ONT and Illumina FASTQ files as input, perform quality control (QC), filtering, error-correction, assembly, polishing with self long-reads and short-reads, and post-assembly curation, among assembly evaluations with different tools.
+**hybridassembly** is a bioinformatics pipeline that performs preprocessing, *de novo* assembly, polishing and evaluation steps to obtain high-quality human genomes using long-reads from Oxford Nanopore Sequencing (ONT) and short-reads from Illumina. It takes a samplesheet with ONT and Illumina FASTQ files as input, perform quality control (QC), filtering, error-correction, assembly, polishing with self long-reads and short-reads, and post-assembly curation, among assembly evaluations with different tools.
 
 The **hybridassembly** pipeline is built using [Nextflow](https://www.nextflow.io/), following [nf-core](https://nf-co.re) guidelines and templates.
 
