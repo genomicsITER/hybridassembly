@@ -2,7 +2,7 @@
 
 # Hybrid assembly
 
-A public repository of **hybrid assembly** pipeline maintained by ITER.
+A public repository of **hybrid *de novo* assembly** pipeline maintained by ITER.
 
 ## Introduction
 
@@ -50,11 +50,6 @@ SAMPLENAME,SAMPLENAME_R1_001.fastq.gz,SAMPLENAME_R2_001.fastq.gz,SAMPLENAME_LR.f
 
 Each row represents a sample with both paired-end FASTQ files (gzipped) and ONT long-read FASTQ file (gzipped).
 
-<!-- TODO nf-core: Describe the minimum required steps to execute the pipeline, e.g. how to prepare samplesheets.
-     Explain what rows and columns represent. For instance (please edit as appropriate):
-
--->
-
 Now, you can run the pipeline using:
 
 ```bash
@@ -68,53 +63,30 @@ nextflow run main.nf \
 > Please provide pipeline parameters via the CLI or Nextflow `-params-file` option. Custom config files including those provided by the `-c` Nextflow option can be used to provide any configuration _**except for parameters**_;
 > see [docs](https://nf-co.re/usage/configuration#custom-configuration-files).
 
-For more details and further functionality, please refer to the [usage documentation](https://github.com/AdrianMBarrera/hybridassembly/blob/master/docs/usage.md).
+For more details and further functionality, please refer to the [usage documentation](docs/usage.md).
 
 ## Pipeline output
 
-To see the results of an example test run with a full size dataset refer to the [results](https://nf-co.re/hybridassembly/results) tab on the nf-core website pipeline page.
-For more details about the output files and reports, please refer to the
-[output documentation](https://nf-co.re/hybridassembly/output).
+For more details about the output files and reports, please refer to the [output documentation](docs/output.md).
 
 ## Code for genome preprocessing, assembly, polishing, and evaluation
 
-See [here](https://github.com/AdrianMBarrera/hybridassembly/blob/master/docs/benchmarking_code.md) a detailed use of each tool used for preprocessing, assembly, polishing, and evaluation.
+See [here](docs/benchmarking_code.md) a detailed use of each tool used for preprocessing, assembly, polishing, and evaluation.
 
 ## Credits
 
-nf-core/hybridassembly was originally written by Adrián Muñoz.
+This pipeline was originally written by Adrián Muñoz-Barrera.
 
-We thank the following people for their extensive assistance in the development of this pipeline:
+<!-- TODO Add the reference to the paper -->
 
-<!-- TODO nf-core: If applicable, make list of people who have also contributed -->
+<!-- TODO Add funding -->
 
 ## Contributions and Support
 
 If you would like to contribute to this pipeline, please see the [contributing guidelines](.github/CONTRIBUTING.md).
 
-For further information or help, don't hesitate to get in touch on the [Slack `#hybridassembly` channel](https://nfcore.slack.com/channels/hybridassembly) (you can join with [this invite](https://nf-co.re/join/slack)).
+Follow us on X: [@LabCflores](https://x.com/LabCflores)
 
 ## Citations
 
-<!-- TODO nf-core: Add citation for pipeline after first release. Uncomment lines below and update Zenodo doi and badge at the top of this file. -->
-<!-- If you use nf-core/hybridassembly for your analysis, please cite it using the following doi: [10.5281/zenodo.XXXXXX](https://doi.org/10.5281/zenodo.XXXXXX) -->
-
-<!-- TODO nf-core: Add bibliography of tools and data used in your pipeline -->
-
 An extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.
-
-You can cite the `nf-core` publication as follows:
-
-> **The nf-core framework for community-curated bioinformatics pipelines.**
->
-> Philip Ewels, Alexander Peltzer, Sven Fillinger, Harshil Patel, Johannes Alneberg, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso & Sven Nahnsen.
->
-> _Nat Biotechnol._ 2020 Feb 13. doi: [10.1038/s41587-020-0439-x](https://dx.doi.org/10.1038/s41587-020-0439-x).
-
-## Changelog
-
-> May ??, 2024. Make this repository public.
->
-> April 11, 2024. Added command usage sections.
->
-> April 1, 2024. Created the initial version of this repository.
