@@ -124,6 +124,11 @@ workflow HYBRIDASSEMBLY {
     ch_versions = ch_versions.mix(FLYE.out.versions.first())
 
     //
+    // SUBWORKFLOW: Run polishing subworkflow using multiple rounds of Racon and a final step with Pilon
+    //
+    // TODO
+
+    //
     // Collate and save software versions
     //
     softwareVersionsToYAML(ch_versions)

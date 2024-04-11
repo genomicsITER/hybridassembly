@@ -8,7 +8,7 @@ process RATATOSK {
         'biocontainers/ratatosk:0.9.0--hdcf5f25_0' }"
 
     input:
-    tuple val(meta), path(R1), path(R2), path(LR)
+    tuple val(meta), path(shortreads), path(longreads)
 
     output:
     tuple val(meta), path("*.fastq.gz"), emit: reads
@@ -22,9 +22,9 @@ process RATATOSK {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    echo $R1 $R2 > short_read_list
+    echo $shortreads | sed 's/ /\\n/g' > short_read_list
 
-    Ratatosk correct -v $args -s short_read_list -l $LR -G -o ${prefix} 2> >(tee ${prefix}.log >&2)
+    Ratatosk correct -v $args -s short_read_list -l $longreads -o ${prefix}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

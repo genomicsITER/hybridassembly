@@ -80,6 +80,10 @@ To see the results of an example test run with a full size dataset refer to the 
 For more details about the output files and reports, please refer to the
 [output documentation](https://nf-co.re/hybridassembly/output).
 
+## Code for genome preprocessing, assembly, polishing, and evaluation
+
+See [here](https://github.com/AdrianMBarrera/hybridassembly/docs/benchmarking_code.md) a detailed use of each tool used for preprocessing, assembly, polishing, and evaluation.
+
 ## Credits
 
 nf-core/hybridassembly was originally written by Adrián Muñoz.
