@@ -82,7 +82,7 @@ For more details about the output files and reports, please refer to the
 
 ## Code for genome preprocessing, assembly, polishing, and evaluation
 
-See [here](https://github.com/AdrianMBarrera/hybridassembly/docs/benchmarking_code.md) a detailed use of each tool used for preprocessing, assembly, polishing, and evaluation.
+See [here](https://github.com/AdrianMBarrera/hybridassembly/blob/master/docs/benchmarking_code.md) a detailed use of each tool used for preprocessing, assembly, polishing, and evaluation.
 
 ## Credits
 
