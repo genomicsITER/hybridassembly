@@ -1,12 +1,5 @@
 --- UNDER CONSTRUCTION ---
 
-<h1>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/images/nf-core-hybridassembly_logo_dark.png">
-    <img alt="nf-core/hybridassembly" src="docs/images/nf-core-hybridassembly_logo_light.png">
-  </picture>
-</h1>
-
 # Hybrid assembly
 
 A public repository of **hybrid assembly** pipeline maintained by ITER.
@@ -50,19 +43,19 @@ A public repository of **hybrid assembly** pipeline maintained by ITER.
 > [!NOTE]
 > If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/usage/installation) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.
 
-<!-- TODO nf-core: Describe the minimum required steps to execute the pipeline, e.g. how to prepare samplesheets.
-     Explain what rows and columns represent. For instance (please edit as appropriate):
-
 First, prepare a samplesheet with your input data that looks as follows:
 
 `samplesheet.csv`:
 
 ```csv
-sample,fastq_1,fastq_2
-CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
+sample,fastq_1,fastq_2,long_reads
+SAMPLENAME,SAMPLENAME_R1_001.fastq.gz,SAMPLENAME_R2_001.fastq.gz,SAMPLENAME_LR.fastq.gz
 ```
 
-Each row represents a fastq file (single-end) or a pair of fastq files (paired end).
+Each row represents a sample with both paired-end FASTQ files (gzipped) and ONT long-read FASTQ file (gzipped).
+
+<!-- TODO nf-core: Describe the minimum required steps to execute the pipeline, e.g. how to prepare samplesheets.
+     Explain what rows and columns represent. For instance (please edit as appropriate):
 
 -->
 
@@ -71,8 +64,8 @@ Now, you can run the pipeline using:
 <!-- TODO nf-core: update the following command to include all required parameters for a minimal example -->
 
 ```bash
-nextflow run nf-core/hybridassembly \
-   -profile <docker/singularity/.../institute> \
+nextflow run main.nf \
+   -profile <default/docker/conda> \
    --input samplesheet.csv \
    --outdir <OUTDIR>
 ```
@@ -125,8 +118,7 @@ You can cite the `nf-core` publication as follows:
 > _Nat Biotechnol._ 2020 Feb 13. doi: [10.1038/s41587-020-0439-x](https://dx.doi.org/10.1038/s41587-020-0439-x).
 
 ## Changelog
+
 > May ??, 2024. Make this repository public.
-
 > April 11, 2024. Added command usage sections.
-
 > April 1, 2024. Created the initial version of this repository.
