@@ -7,17 +7,9 @@
   </picture>
 </h1>
 
-[![GitHub Actions CI Status](https://github.com/nf-core/hybridassembly/actions/workflows/ci.yml/badge.svg)](https://github.com/nf-core/hybridassembly/actions/workflows/ci.yml)
-[![GitHub Actions Linting Status](https://github.com/nf-core/hybridassembly/actions/workflows/linting.yml/badge.svg)](https://github.com/nf-core/hybridassembly/actions/workflows/linting.yml)[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/hybridassembly/results)[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.XXXXXXX-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.XXXXXXX)
-[![nf-test](https://img.shields.io/badge/unit_tests-nf--test-337ab7.svg)](https://www.nf-test.com)
+# Hybrid assembly
 
-[![Nextflow](https://img.shields.io/badge/nextflow%20DSL2-%E2%89%A523.04.0-23aa62.svg)](https://www.nextflow.io/)
-[![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
-[![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)
-[![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)
-[![Launch on Seqera Platform](https://img.shields.io/badge/Launch%20%F0%9F%9A%80-Seqera%20Platform-%234256e7)](https://tower.nf/launch?pipeline=https://github.com/nf-core/hybridassembly)
-
-[![Get help on Slack](http://img.shields.io/badge/slack-nf--core%20%23hybridassembly-4A154B?labelColor=000000&logo=slack)](https://nfcore.slack.com/channels/hybridassembly)[![Follow on Twitter](http://img.shields.io/badge/twitter-%40nf__core-1DA1F2?labelColor=000000&logo=twitter)](https://twitter.com/nf_core)[![Follow on Mastodon](https://img.shields.io/badge/mastodon-nf__core-6364ff?labelColor=FFFFFF&logo=mastodon)](https://mstdn.science/@nf_core)[![Watch on YouTube](http://img.shields.io/badge/youtube-nf--core-FF0000?labelColor=000000&logo=youtube)](https://www.youtube.com/c/nf-core)
+A public repository of **hybrid assembly** pipeline maintained by ITER.
 
 ## Introduction
 
@@ -33,8 +25,13 @@
      workflows use the "tube map" design for that. See https://nf-co.re/docs/contributing/design_guidelines#examples for examples.   -->
 <!-- TODO nf-core: Fill in short bullet-pointed list of the default steps in the pipeline -->
 
-1. Read QC ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
-2. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
+1. Illumina read QC ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
+2. ONT read QC ([`NanoPlot`](https://github.com/wdecoster/NanoPlot))
+3. Quality filtering long reads ([`Filtlong`](https://github.com/rrwick/Filtlong))
+4. Hybrid error correction of long reads ([`Ratatosk`](https://github.com/DecodeGenetics/Ratatosk))
+5. De novo assembler ([`Flye`](https://github.com/fenderglass/Flye))
+6. ...
+7. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
 
 ## Usage
 
