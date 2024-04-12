@@ -66,12 +66,22 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 <details markdown="1">
 <summary>Output files</summary>
 
+- `<SAMPLE>/*.fastq.gz`: Corrected (compressed) FASTQ file.
+
 </details>
 
 ### Flye
 
 <details markdown="1">
 <summary>Output files</summary>
+
+- `<SAMPLE>/assembly/`
+  - `*.fasta.gz`: Assembled FASTA file.
+  - `*.gfa.gz`: Repeat graph in gfa format.
+  - `*.gv.gz`: Repeat graph in gv format.
+  - `*.txt`: Extra information and statistics about resulting contigs.
+  - `*.log`: Flye log file
+  - `*.json`: Flye parameters
 
 </details>
 
@@ -80,12 +90,18 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 <details markdown="1">
 <summary>Output files</summary>
 
+- `<SAMPLE>/assembly/`
+  - `*_assembly_consensus.fasta.gz`: Improved genome assembly.
+
 </details>
 
 ### Pilon
 
 <details markdown="1">
 <summary>Output files</summary>
+
+- `<SAMPLE>/assembly/`
+  - `*.fasta.gz`: Improved genome assembly with short-reads.
 
 </details>
 
