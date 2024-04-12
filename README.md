@@ -48,6 +48,9 @@ sample,fastq_1,fastq_2,long_reads
 SAMPLENAME,SAMPLENAME_R1_001.fastq.gz,SAMPLENAME_R2_001.fastq.gz,SAMPLENAME_LR.fastq.gz
 ```
 
+> [!TIP]
+> If you are working with large genomes, as human, we recommend to include only one sample in the samplesheet at a time, due to the high computational requirements used by some pipeline steps.
+
 Each row represents a sample with both paired-end FASTQ files (gzipped) and ONT long-read FASTQ file (gzipped).
 
 Now, you can run the pipeline using:
