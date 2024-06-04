@@ -1,18 +1,20 @@
 # nf-core/hybridassembly: Citations
 
-## [nf-core](https://pubmed.ncbi.nlm.nih.gov/32055031/)
+## Benchmarking of bioinformatics tools for the hybrid *de novo* assembly of human whole-genome sequencing data
+
+- [Preprint](https://www.biorxiv.org/content/10.1101/2024.05.28.595812v1)
+
+> Muñoz-Barrera, Adrián, Luis A. Rubio-Rodríguez, David Jáspez, Almudena Corrales, Itahisa Marcelino-Rodriguez, José M. Lorenzo-Salazar, Rafaela González-Montelongo, and Carlos Flores. 2024. “Benchmarking of Bioinformatics Tools for the Hybrid de Novo Assembly of Human Whole-Genome Sequencing Data.” bioRxiv.
+
+## Nextflow and nf-core
+
+- [nf-core](https://pubmed.ncbi.nlm.nih.gov/32055031/)
 
 > Ewels PA, Peltzer A, Fillinger S, Patel H, Alneberg J, Wilm A, Garcia MU, Di Tommaso P, Nahnsen S. The nf-core framework for community-curated bioinformatics pipelines. Nat Biotechnol. 2020 Mar;38(3):276-278. doi: 10.1038/s41587-020-0439-x. PubMed PMID: 32055031.
 
-## [Nextflow](https://pubmed.ncbi.nlm.nih.gov/28398311/)
+- [Nextflow](https://pubmed.ncbi.nlm.nih.gov/28398311/)
 
 > Di Tommaso P, Chatzou M, Floden EW, Barja PP, Palumbo E, Notredame C. Nextflow enables reproducible computational workflows. Nat Biotechnol. 2017 Apr 11;35(4):316-319. doi: 10.1038/nbt.3820. PubMed PMID: 28398311.
-
-## Preprint
-
-- [Benchmarking of bioinformatics tools for the hybrid de novo assembly of human whole-genome sequencing data](https://www.biorxiv.org/content/10.1101/2024.05.28.595812v1)
-
-> Muñoz-Barrera, Adrián, Luis A. Rubio-Rodríguez, David Jáspez, Almudena Corrales, Itahisa Marcelino-Rodriguez, José M. Lorenzo-Salazar, Rafaela González-Montelongo, and Carlos Flores. 2024. “Benchmarking of Bioinformatics Tools for the Hybrid de Novo Assembly of Human Whole-Genome Sequencing Data.” bioRxiv.
 
 ## Pipeline tools
 
