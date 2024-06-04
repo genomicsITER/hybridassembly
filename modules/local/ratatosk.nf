@@ -1,6 +1,6 @@
 process RATATOSK {
     tag "$meta.id"
-    label 'process_high'
+    label 'process_high_memory_long'
 
     conda "bioconda::ratatosk=0.9.0-0"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -23,8 +23,9 @@ process RATATOSK {
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
     echo $shortreads | sed 's/ /\\n/g' > short_read_list
+    echo $longreads > long_read_list
 
-    Ratatosk correct -v $args -s short_read_list -l $longreads -o ${prefix}
+    Ratatosk correct -v $args -s short_read_list -l long_read_list -o ${prefix}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

@@ -113,6 +113,12 @@
                     "default": 3000000000,
                     "description": "Target genome size",
                     "help_text": "Example: --target_bases 3000000000"
+                },
+                "ratatosk_cores": {
+                    "type": "number",
+                    "default": 16,
+                    "description": "Number of threads used in Ratatosk process",
+                    "help_text": "Example: --cores 16"
                 }
             }
         },
