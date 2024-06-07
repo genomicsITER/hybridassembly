@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+# Extracted from Ratatosk repository: https://github.com/DecodeGenetics/Ratatosk
+# This script replace IUPAC characters to non-IUPAC characted from the FASTQ file generated with Ratatosk.
+
 import sys
 import os
 import random
