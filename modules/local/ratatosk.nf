@@ -11,7 +11,7 @@ process RATATOSK {
     tuple val(meta), path(shortreads), path(longreads)
 
     output:
-    tuple val(meta), path("*.fastq.gz"), emit: reads
+    tuple val(meta), path("*.fastq"), emit: reads
     tuple val(meta), path("*.log")     , emit: log
     path "versions.yml"                , emit: versions
 

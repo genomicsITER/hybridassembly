@@ -143,7 +143,7 @@ workflow HYBRIDASSEMBLY {
     ch_versions = ch_versions.mix(RACON_ROUND_1.out.versions.first())
 
     //
-    // MODULE: Secong round of polishing with Racon
+    // MODULE: Second round of polishing with Racon
     //
     MINIMAP2_ALIGN_ROUND_2 (REPLACE_IUPAC.out.reads, RACON_ROUND_1.out.improved_assembly, false, false, false)
     ch_versions = ch_versions.mix(MINIMAP2_ALIGN_ROUND_2.out.versions.first())

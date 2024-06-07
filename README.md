@@ -92,4 +92,6 @@ Follow us on X: [@LabCflores](https://x.com/LabCflores)
 
 ## Citations
 
+[Preprint](https://www.biorxiv.org/content/10.1101/2024.05.28.595812v1): Muñoz-Barrera, Adrián, Luis A. Rubio-Rodríguez, David Jáspez, Almudena Corrales, Itahisa Marcelino-Rodriguez, José M. Lorenzo-Salazar, Rafaela González-Montelongo, and Carlos Flores. 2024. “Benchmarking of Bioinformatics Tools for the Hybrid de Novo Assembly of Human Whole-Genome Sequencing Data.” bioRxiv.
+
 An extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.

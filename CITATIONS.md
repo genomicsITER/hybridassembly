@@ -1,11 +1,5 @@
 # nf-core/hybridassembly: Citations
 
-## Benchmarking of bioinformatics tools for the hybrid *de novo* assembly of human whole-genome sequencing data
-
-- [Preprint](https://www.biorxiv.org/content/10.1101/2024.05.28.595812v1)
-
-> Muñoz-Barrera, Adrián, Luis A. Rubio-Rodríguez, David Jáspez, Almudena Corrales, Itahisa Marcelino-Rodriguez, José M. Lorenzo-Salazar, Rafaela González-Montelongo, and Carlos Flores. 2024. “Benchmarking of Bioinformatics Tools for the Hybrid de Novo Assembly of Human Whole-Genome Sequencing Data.” bioRxiv.
-
 ## Nextflow and nf-core
 
 - [nf-core](https://pubmed.ncbi.nlm.nih.gov/32055031/)
