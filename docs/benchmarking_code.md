@@ -1,6 +1,7 @@
 # Code for genome preprocessing, assembly, polishing, and evaluation
 
 ## Data preprocessing
+
 ```bash
 sample=HG002
 
@@ -29,6 +30,7 @@ Ratatosk correct \
 ```
 
 ## Read quality assessment
+
 ```bash
 sample=HG002
 
@@ -68,6 +70,7 @@ NanoPlot \
 ```
 
 ## Assembly process
+
 ```bash
 sample=HG002
 
@@ -154,6 +157,7 @@ wtpoa-cns \
 ```
 
 ## Polishing
+
 ```bash
 ## Polishing Filtered+Corrected Flye assembly by:
 ### 1. Two rounds of Racon
@@ -303,4 +307,152 @@ java -Xmx512G -jar .../pilon-1.24-0/pilon.jar \
    --frags ${sample}.merged.deduped.sorted.fixed.bam \
    --output ${sample}.corr.flye.racon2.medaka.pilon \
    --outdir Pilon_Results
+```
+
+## Contig curation, scaffolding, and gap-filling
+
+```bash
+## 1. Contig curation with purge_dups
+## 2. Scaffolding with RagTag
+## 3. Gap-filling con TGS-GapCloser
+
+sample=HG002
+
+reference=chm13v2.0.fa
+
+## ########## ##
+## purge_dups ##
+## ########## ##
+
+pdconfig=/path/to/purge_dups/scripts/pd_config.py
+run_purge_dups=/path/to/purge_dups/scripts/run_purge_dups.py
+bindir=/path/to/purge_dups/bin
+
+# Step 1. Use pd_config.py to generate a configuration file.
+lr=lr-fastq.txt # Text file with ONT filtered and corrected fastq path
+sr=sr-fastqs.txt # Text file with Illumina R1 and R2 fastq paths
+
+config=${sample}.purge_dups.config.json
+${pdconfig} -s ${sr} -l ${outdir} -n ${config} ${sample}.corr.flye.racon2.pilon.fasta ${lr}
+
+# Step 2. Modify the configuration file (optional).
+### Change '"skip": 0' to '"skip": 1' in "busco" and "kcp".
+### nano ${outdir}/HG002.purge_dups.config.json
+
+# Step 3. Use run_purge_dups.py to run the pipeline.
+spid=${sample}
+${run_purge_dups} -p bash ${config} ${bindir} ${spid}
+
+mv ${sample}.flye.racon2.pilon/seqs/${sample}.flye.racon2.pilon.purged.fa ${sample}.corr.flye.racon2.pilon.purged.fasta
+
+## ###### ##
+## RagTag ##
+## ###### ##
+
+# 1. Misassemblies correction
+ragtag.py correct -o . ${reference} ${sample}.corr.flye.racon2.pilon.purged.fasta
+
+mv ragtag.correct.fasta ${sample}.corr.flye.racon2.pilon.purged.corrected.fasta
+
+# 2. Scaffolding
+ragtag.py scaffold -o . ${reference} ${sample}.corr.flye.racon2.pilon.purged.corrected.fasta
+
+mv ragtag.scaffold.fasta ${sample}.corr.flye.racon2.pilon.purged.corrected.scaffold.fasta
+
+## ############# ##
+## TGS-GapCloser ##
+## ############# ##
+
+reads=${sample}.filtered.corrected.fastq
+reads_fasta=${sample}.filtered.corrected.fasta
+
+# Convert FASTQ to FASTA
+seqtk seq -a ${reads} > ${reads_fasta}
+
+# Run TGS-GapClosed
+outprefix=./${sample}
+
+tgsgapcloser \
+    --thread 16 \
+    --ne \
+    --minmap_arg ' -x map-ont -K 80M' \
+    --tgstype ont \
+    --scaff ${sample}.corr.flye.racon2.medaka.pilon.purged.corrected.scaffold.fasta \
+    --reads ${reads_fasta} \
+    --output ${outprefix}
+
+mv ${sample}.scaff_seqs ${sample}.corr.flye.racon2.pilon.purged.corrected.scaffold.gapclosed.fasta
+
+```
+
+## Assembly evaluation
+
+```bash
+## 1. QUAST
+## 2. BUSCO
+## 3. Merqury
+
+sample=HG002
+
+final_assembly=${sample}.corr.flye.racon2.medaka.pilon.purged.corrected.scaffold.gapclosed.fasta
+
+reference=chm13v2.0.fa
+
+## ##### ##
+## QUAST ##
+## ##### ##
+
+quast-lg.py \
+    --threads ${threads} \
+    --circos \
+    --output-dir ${outdir} \
+    --reference ${reference} \
+    --labels ${sample}_final_assembly \
+    ${final_assembly}
+
+## ##### ##
+## BUSCO ##
+## ##### ##
+
+busco \
+    -m genome \
+    -i ${final_assembly} \
+    -o ${sample}_final_assembly \
+    --out_path ${outdir} \
+    -l primates_odb10
+
+## ####### ##
+## Merqury ##
+## ####### ##
+
+meryldir=./meryl_files
+if [ ! -d ${meryldir} ]; then
+  mkdir -p ${meryldir}
+fi
+
+r1meryl=${meryldir}/${sample}_R1.meryl
+r2meryl=${meryldir}/${sample}_R2.meryl
+merylgenome=${meryldir}/${sample}.meryl
+
+# Recommended k-value
+k=21
+
+# 1. Build meryl dbs
+meryl k=${k} count output ${r1meryl} ${r1}
+meryl k=${k} count output ${r2meryl} ${r2}
+
+# 2. Merge
+meryl union-sum output ${merylgenome} ${meryldir}/${sample}_R*.meryl
+
+# 3. Running Merqury
+prefix=MerquryEval
+resultsdir=./merqury_results
+if [ ! -d ${resultsdir} ]; then
+  mkdir -p ${resultsdir}
+fi
+
+cd ${resultsdir}
+
+merqury.sh ${merylgenome} ${final_assembly} ${prefix}
+
 ```
