@@ -89,7 +89,7 @@ For more details and further functionality, please refer to the [usage documenta
 
 To ensure the pipeline is set up correctly and functioning as expected, you can run it with the provided test data. The test data consists of a small subset of the human chromosome 22 sequence, specifically selected for quick and efficient testing. Follow these steps:
 
-1. Clone the repository
+### 1. Clone the repository
 
 First, clone the repository and navigate to the project directory:
 
@@ -100,7 +100,7 @@ cd hybridassembly
 
 Test data is included in the repository under the `test_data/` directory.
 
-2. Run the pipeline
+### 2. Run the pipeline
 
 Execute the pipeline with the test data using the following command:
 
@@ -110,11 +110,11 @@ nextflow run main.nf \
    -config test.config
 ```
 
-3. Check the results
+### 3. Check the results
 
 Upon successful completion, the output files will be saved in the `test_data/results` directory. Review the output to verify that the pipeline ran correctly.
 
-4. Troubleshooting
+### 4. Troubleshooting
 
 If you encounter errors, ensure:
 
