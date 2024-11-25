@@ -21,8 +21,8 @@ The **hybridassembly** pipeline is built using [Nextflow](https://www.nextflow.i
 
 <h1>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/images/Simplified pipeline.drawio.svg">
-    <img alt="Hybrid assembly pipeline" src="docs/images/Simplified pipeline.drawio.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/Assembly_pipeline_GitHub.drawio.svg">
+    <img alt="Hybrid assembly pipeline" src="docs/images/Assembly_pipeline_GitHub.drawio.svg">
   </picture>
 </h1>
 
@@ -110,7 +110,7 @@ If you encounter errors, ensure:
 
 - The required dependencies (e.g., Nextflow, Docker/Singularity/Conda) are installed.
 - You are using a compatible environment.
-- Use the -resume` flag to retry failed tasks without re-running completed ones:
+- Use the `-resume` flag to retry failed tasks without re-running completed ones:
 
 ```bash
 nextflow run main.nf \
