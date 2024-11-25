@@ -5,6 +5,13 @@
         "https://github.com/nf-core/modules.git": {
             "modules": {
                 "nf-core": {
+                    "busco/busco": {
+                        "branch": "master",
+                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
                     "bwa/index": {
                         "branch": "master",
                         "git_sha": "6278bf9afd4a4b2d00fa6052250e73da3d91546f",
@@ -75,6 +82,27 @@
                             "modules"
                         ]
                     },
+                    "merqury/merqury": {
+                        "branch": "master",
+                        "git_sha": "5f7195c5a3e889a03c31c43aec72a65f8b1f9282",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "meryl/count": {
+                        "branch": "master",
+                        "git_sha": "1c72d95476a2edf92ee4f08dc4321b3c50cd3c13",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "meryl/unionsum": {
+                        "branch": "master",
+                        "git_sha": "1c72d95476a2edf92ee4f08dc4321b3c50cd3c13",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
                     "minimap2/align": {
                         "branch": "master",
                         "git_sha": "72e277acfd9e61a9f1368eafb4a9e83f5bcaa9f5",
@@ -110,6 +138,48 @@
                             "modules"
                         ]
                     },
+                    "purgedups/calcuts": {
+                        "branch": "master",
+                        "git_sha": "3c77ca9aac783e76c3614a06db3bfe4fef619bde",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "purgedups/getseqs": {
+                        "branch": "master",
+                        "git_sha": "3f5420aa22e00bd030a2556dfdffc9e164ec0ec5",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "purgedups/pbcstat": {
+                        "branch": "master",
+                        "git_sha": "3f5420aa22e00bd030a2556dfdffc9e164ec0ec5",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "purgedups/purgedups": {
+                        "branch": "master",
+                        "git_sha": "3c77ca9aac783e76c3614a06db3bfe4fef619bde",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "purgedups/splitfa": {
+                        "branch": "master",
+                        "git_sha": "3f5420aa22e00bd030a2556dfdffc9e164ec0ec5",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "quast": {
+                        "branch": "master",
+                        "git_sha": "3f5420aa22e00bd030a2556dfdffc9e164ec0ec5",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
                     "racon": {
                         "branch": "master",
                         "git_sha": "3f5420aa22e00bd030a2556dfdffc9e164ec0ec5",
@@ -120,6 +190,13 @@
                     "samtools/index": {
                         "branch": "master",
                         "git_sha": "f4596fe0bdc096cf53ec4497e83defdb3a94ff62",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "seqtk/seq": {
+                        "branch": "master",
+                        "git_sha": "7f88aae93c69586c0789322b77743ee0ef469502",
                         "installed_by": [
                             "modules"
                         ]

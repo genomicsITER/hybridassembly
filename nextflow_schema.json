@@ -125,7 +125,7 @@
         "assembly_options": {
             "title": "Assembly options",
             "type": "object",
-            "description": "Parameters used in assembly and polishing functions",
+            "description": "Parameters used in assembly functions",
             "properties": {
                 "flye_mode": {
                     "type": "string",
@@ -141,6 +141,75 @@
                     "type": "number",
                     "default": 1,
                     "description": "Number of polishing iterations"
+                }
+            }
+        },
+        "polishing_options": {
+            "title": "Polishing options",
+            "type": "object",
+            "description": "Parameters used in polishing tools",
+            "properties": {
+                "picard_sort_order": {
+                    "type": "string",
+                    "default": "coordinate",
+                    "description": "Picard sort order type",
+                    "help_text": "Available options are unsorted, queryname, coordinate, duplicate, or unknown"
+                },
+                "pilon_mode": {
+                    "type": "string",
+                    "default": "frags",
+                    "description": "Indicates the type of bam file used"
+                },
+                "pilon_max_mem": {
+                    "type": "string",
+                    "default": "16G",
+                    "description": "Max mem value to use with Pilon"
+                }
+            }
+        },
+        "curation_options": {
+            "title": "Curation options",
+            "type": "object",
+            "description": "Parameters used in final curation assembly tools",
+            "properties": {
+                "tgs_gapcloser_threads": {
+                    "type": "number",
+                    "default": 16,
+                    "description": "Number of threads used in TGS-GapCloser process",
+                    "help_text": "Example: --thread 16"
+                },
+                "tgs_gapcloser_minmap": {
+                    "type": "string",
+                    "default": " -x ava-ont -K 80M",
+                    "description": "Options used to align using minimap2"
+                },
+                "tgs_gapcloser_type": {
+                    "type": "string",
+                    "default": "ont",
+                    "description": "TGS type"
+                }
+            }
+        },
+        "assessment_options": {
+            "title": "Assessment options",
+            "type": "object",
+            "description": "Parameters used in the assessment of the final curated assembly",
+            "properties": {
+                "busco_mode": {
+                    "type": "string",
+                    "default": "genome",
+                    "description": "The mode to run Busco in. One of genome, proteins, or transcriptome",
+                    "help_text": "Example: --mode genome"
+                },
+                "busco_lineage": {
+                    "type": "string",
+                    "default": "auto",
+                    "description": "The BUSCO lineage to use, or “auto” to automatically select lineage"
+                },
+                "meryl_kvalue": {
+                    "type": "number",
+                    "default": 21,
+                    "description": "An integer value of k to use as the k-mer value"
                 }
             }
         },

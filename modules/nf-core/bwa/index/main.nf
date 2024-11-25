@@ -1,5 +1,5 @@
 process BWA_INDEX {
-    tag "$fasta"
+    tag "$meta.id"
     label 'process_single'
 
     conda "${moduleDir}/environment.yml"

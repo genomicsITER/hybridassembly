@@ -4,18 +4,12 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { FASTQC                                   } from '../modules/nf-core/fastqc/main'
-include { NANOPLOT as NANOPLOT_RAW                 } from '../modules/nf-core/nanoplot/main'
-include { FILTLONG                                 } from '../modules/nf-core/filtlong/main'
-include { NANOPLOT as NANOPLOT_FILT                } from '../modules/nf-core/nanoplot/main'
-include { RATATOSK                                 } from '../modules/local/ratatosk'
-include { REPLACE_IUPAC                            } from '../modules/local/replace_IUPAC'
-include { NANOPLOT as NANOPLOT_CORR                } from '../modules/nf-core/nanoplot/main'
+include { PREPROCESSING_PIPELINE                   } from '../subworkflows/local/preprocessing'
 include { FLYE                                     } from '../modules/nf-core/flye/main'
-include { MINIMAP2_ALIGN as MINIMAP2_ALIGN_ROUND_1 } from '../modules/nf-core/minimap2/align/main'
-include { MINIMAP2_ALIGN as MINIMAP2_ALIGN_ROUND_2 } from '../modules/nf-core/minimap2/align/main'
-include { RACON as RACON_ROUND_1                   } from '../modules/nf-core/racon/main'
-include { RACON as RACON_ROUND_2                   } from '../modules/nf-core/racon/main'
+include { POLISHING_PIPELINE                       } from '../subworkflows/local/polishing'
+include { CURATION_PIPELINE                        } from '../subworkflows/local/curation'
+include { ASSESSMENT_PIPELINE                       } from '../subworkflows/local/assessment'
+
 include { MULTIQC                                  } from '../modules/nf-core/multiqc/main'
 
 include { paramsSummaryMap                         } from 'plugin/nf-validation'
@@ -38,14 +32,15 @@ workflow HYBRIDASSEMBLY {
 
     main:
 
-    ch_versions          = Channel.empty()
-    ch_multiqc_files     = Channel.empty()
+    ch_versions            = Channel.empty()
+    ch_multiqc_files       = Channel.empty()
 
-    ch_short             = Channel.empty()
-    ch_long              = Channel.empty()
-    ch_maskedshort_long  = Channel.empty()
+    ch_short               = Channel.empty()
+    ch_long                = Channel.empty()
+    ch_maskedshort_long    = Channel.empty()
 
-    ch_polishing_racon_1 = Channel.empty()
+    ch_purgedups_purgedups = Channel.empty()
+    ch_purgedups_getseqs   = Channel.empty()
 
     ch_samplesheet.map {
         meta, short_reads1, short_reads2, long_reads ->
@@ -68,128 +63,42 @@ workflow HYBRIDASSEMBLY {
         ch_maskedshort_long
     }
 
-    //
-    // MODULE: Run FastQC
-    //
-    FASTQC ( ch_short )
-    ch_multiqc_files = ch_multiqc_files.mix(FASTQC.out.zip.collect{it[1]})
-    ch_versions = ch_versions.mix(FASTQC.out.versions.first())
+    ch_reference = Channel.empty()
 
     //
-    // MODULE: Run NanoPlot
+    // SUBWORKFLOW: Preprocessing subworkflow
     //
-    NANOPLOT_RAW ( ch_long )
-    ch_multiqc_files = ch_multiqc_files.mix(NANOPLOT_RAW.out.txt.collect{it[1]})
-    ch_versions = ch_versions.mix(NANOPLOT_RAW.out.versions.first())
-
-    //
-    // MODULE: Run FiltLong
-    //
-    FILTLONG ( ch_maskedshort_long )
-    ch_multiqc_files = ch_multiqc_files.mix(FILTLONG.out.log.collect{it[1]})
-    ch_versions = ch_versions.mix(FILTLONG.out.versions.first())
-
-    ch_short_longfiltered = ch_short.join(FILTLONG.out.reads)
-
-    //
-    // MODULE: Run NanoPlot on filtered reads
-    //
-    NANOPLOT_FILT ( FILTLONG.out.reads )
-    ch_multiqc_files = ch_multiqc_files.mix(NANOPLOT_FILT.out.txt.collect{it[1]})
-    ch_versions = ch_versions.mix(NANOPLOT_FILT.out.versions.first())
-
-    //
-    // MODULE: Run Ratatosk on filtered reads (local module)
-    //
-    RATATOSK ( ch_short_longfiltered )
-    ch_versions = ch_versions.mix(RATATOSK.out.versions.first())
-
-    //
-    // MODULE: Replace IUPAC characters from corrected reads
-    //
-    REPLACE_IUPAC ( RATATOSK.out.reads )
-    ch_versions = ch_versions.mix(REPLACE_IUPAC.out.versions.first())
-
-    ch_short_longcorrected = ch_short.mix(REPLACE_IUPAC.out.reads)
-
-    //
-    // MODULE: Run NanoPlot on filtered reads
-    //
-    NANOPLOT_CORR ( REPLACE_IUPAC.out.reads )
-    ch_multiqc_files = ch_multiqc_files.mix(NANOPLOT_CORR.out.txt.collect{it[1]})
-    ch_versions = ch_versions.mix(NANOPLOT_CORR.out.versions.first())
+    PREPROCESSING_PIPELINE ( ch_short, ch_long, ch_maskedshort_long )
+    ch_multiqc_files = ch_multiqc_files.mix( PREPROCESSING_PIPELINE.out.preprocessing_multiqc_files )
+    ch_versions = ch_versions.mix( PREPROCESSING_PIPELINE.out.versions.first() )
 
     //
     // MODULE: Run Flye on filtered and corrected reads
     //
-    FLYE ( REPLACE_IUPAC.out.reads, params.flye_mode )
-    ch_multiqc_files = ch_multiqc_files.mix(FLYE.out.txt.collect{it[1]})
-    ch_multiqc_files = ch_multiqc_files.mix(FLYE.out.log.collect{it[1]})
-    ch_multiqc_files = ch_multiqc_files.mix(FLYE.out.json.collect{it[1]})
-    ch_versions = ch_versions.mix(FLYE.out.versions.first())
+    FLYE ( PREPROCESSING_PIPELINE.out.corrected_long_reads, params.flye_mode )
+    ch_multiqc_files = ch_multiqc_files.mix( FLYE.out.txt.collect{it[1]} )
+    ch_multiqc_files = ch_multiqc_files.mix( FLYE.out.log.collect{it[1]} )
+    ch_multiqc_files = ch_multiqc_files.mix( FLYE.out.json.collect{it[1]} )
+    ch_versions = ch_versions.mix( FLYE.out.versions.first() )
 
     //
-    // MODULE: First round of polishing with Racon
+    // SUBWORKFLOW: Polishing subworkflow
     //
-    MINIMAP2_ALIGN_ROUND_1 (REPLACE_IUPAC.out.reads, FLYE.out.fasta, false, false, false)
-    ch_versions = ch_versions.mix(MINIMAP2_ALIGN_ROUND_1.out.versions.first())
-
-    ch_polishing_racon_1 = ch_polishing_racon_1
-        .mix (FLYE.out.fasta)
-        .join (MINIMAP2_ALIGN_ROUND_1.out.paf)
-        .map { meta, short_reads, long_reads, assembly, paf -> tuple(meta, long_reads, assembly, paf) }
-
-    RACON_ROUND_1 ( ch_polishing_racon_1 )
-    ch_versions = ch_versions.mix(RACON_ROUND_1.out.versions.first())
+    POLISHING_PIPELINE ( ch_short, PREPROCESSING_PIPELINE.out.corrected_long_reads, FLYE.out.fasta )
+    ch_versions = ch_versions.mix( POLISHING_PIPELINE.out.versions.first() )
 
     //
-    // MODULE: Second round of polishing with Racon
+    // SUBWORKFLOW: Polishing subworkflow
     //
-    MINIMAP2_ALIGN_ROUND_2 (REPLACE_IUPAC.out.reads, RACON_ROUND_1.out.improved_assembly, false, false, false)
-    ch_versions = ch_versions.mix(MINIMAP2_ALIGN_ROUND_2.out.versions.first())
-
-    ch_polishing_racon_2 = ch_polishing_racon_1
-        .mix (RACON_ROUND_1.out.improved_assembly)
-        .join (MINIMAP2_ALIGN_ROUND_2.out.paf)
-        .map { meta, short_reads, long_reads, assembly, paf -> tuple(meta, long_reads, assembly, paf) }
-
-    RACON_ROUND_2 ( ch_polishing_racon_2 )
-    ch_versions = ch_versions.mix(RACON_ROUND_2.out.versions.first())
+    CURATION_PIPELINE ( PREPROCESSING_PIPELINE.out.corrected_long_reads, POLISHING_PIPELINE.out.polished_assembly )
+    ch_versions = ch_versions.mix( CURATION_PIPELINE.out.versions.first() )
 
     //
-    // MODULE: Final polishing step with Pilon
+    // SUBWORKFLOW: Assessment subworkflow
     //
-    // TODO
-
-    //
-    // MODULE: Purge haplotigs and overlaps with purge_dups
-    //
-    // TODO
-
-    //
-    // MODULE: Correction and scaffolding with RagTag
-    //
-    // TODO
-
-    //
-    // MODULE: Close gaps with TGS-GapCloser
-    //
-    // TODO
-
-    //
-    // MODULE: Assembly evaluation with QUAST
-    //
-    // TODO
-
-    //
-    // MODULE: Assembly evaluation with BUSCO
-    //
-    // TODO
-
-    //
-    // MODULE: Assembly evaluation with Merqury
-    //
-    // TODO
+    ASSESSMENT_PIPELINE ( ch_short, CURATION_PIPELINE.out.polished_assembly, params.fasta )
+    ch_multiqc_files = ch_multiqc_files.mix( ASSESSMENT_PIPELINE.out.assessment_multiqc_files )
+    ch_versions = ch_versions.mix( ASSESSMENT_PIPELINE.out.versions.first() )
 
     //
     // Collate and save software versions

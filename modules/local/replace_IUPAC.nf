@@ -20,7 +20,7 @@ process REPLACE_IUPAC {
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    replaceIUPAC.py $fastq ${prefix}.fixed.fastq
+    replaceIUPAC.py $fastq > ${prefix}.fixed.fastq
 
     rm ${prefix}.fastq
     mv ${prefix}.fixed.fastq ${prefix}.fastq

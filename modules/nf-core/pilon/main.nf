@@ -1,6 +1,6 @@
 process PILON {
     tag "$meta.id"
-    label 'process_medium'
+    label 'process_high_memory_long'
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -25,14 +25,15 @@ process PILON {
 
     script:
     def args = task.ext.args ?: ''
+    def args2 = task.ext.args2 ?: '-Xmx16G'
     def prefix = task.ext.prefix ?: "${meta.id}"
     def valid_mode = ["frags", "jumps", "unpaired", "bam"]
     if ( !valid_mode.contains(pilon_mode) )  { error "Unrecognised mode to run Pilon. Options: ${valid_mode.join(', ')}" }
     """
-    pilon \\
-        --genome $fasta \\
-        --output ${meta.id} \\
-        --threads $task.cpus \\
+    gunzip -c $fasta > genome.fasta
+    java $args2 -jar /usr/local/share/pilon-1.24-0/pilon.jar \\
+        --genome genome.fasta \\
+        --output ${prefix} \\
         $args \\
         --$pilon_mode $bam
 
