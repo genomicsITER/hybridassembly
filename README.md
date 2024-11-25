@@ -99,8 +99,9 @@ cd hybridassembly
 
 Test data is included in the repository under the `test_data/` directory.
 
-> 2. Run the pipeline
-> Execute the pipeline with the test data using the following command:
+2. Run the pipeline
+
+Execute the pipeline with the test data using the following command:
 
 ```bash
 nextflow run main.nf \
@@ -108,14 +109,17 @@ nextflow run main.nf \
    -config test.config
 ```
 
-> 3. Check the results
-> Upon successful completion, the output files will be saved in the `test_data/results` directory. Review the output to verify that the pipeline ran correctly.
+3. Check the results
 
-> 4. Troubleshooting
-> If you encounter errors, ensure:
-> - The required dependencies (e.g., Nextflow, Docker/Singularity/Conda) are installed.
-> - You are using a compatible environment.
-> - Use the -resume flag to retry failed tasks without re-running completed ones:
+Upon successful completion, the output files will be saved in the `test_data/results` directory. Review the output to verify that the pipeline ran correctly.
+
+4. Troubleshooting
+
+If you encounter errors, ensure:
+
+- The required dependencies (e.g., Nextflow, Docker/Singularity/Conda) are installed.
+- You are using a compatible environment.
+- Use the -resume flag to retry failed tasks without re-running completed ones:
 
 ```bash
 nextflow run main.nf \
