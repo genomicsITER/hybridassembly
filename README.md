@@ -1,13 +1,5 @@
 # Hybrid assembly
 
---- UNDER CONSTRUCTION ---
-
-<!--[![GitHub Actions CI Status](https://github.com/nf-core/viralrecon/workflows/nf-core%20CI/badge.svg)](https://github.com/nf-core/viralrecon/actions?query=workflow%3A%22nf-core+CI%22)
-[![GitHub Actions Linting Status](https://github.com/nf-core/viralrecon/workflows/nf-core%20linting/badge.svg)](https://github.com/nf-core/viralrecon/actions?query=workflow%3A%22nf-core+linting%22)
-[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?logo=Amazon%20AWS)](https://nf-co.re/viralrecon/results)
-[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.3901628-1073c8)](https://doi.org/10.5281/zenodo.3901628)
--->
-
 [![Nextflow](https://img.shields.io/badge/nextflow%20DSL2-%E2%89%A524.04.2-23aa62.svg)](https://www.nextflow.io/)
 [![nf-core](https://img.shields.io/badge/build_using-nf--core-1a9655)](https://nf-co.re/)
 
@@ -16,8 +8,6 @@
 [![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)
 
 [![Follow on X](http://img.shields.io/badge/%40LabCFlores-1DA1F2?labelColor=000000&logo=X)](https://x.com/LabCFlores)
-<!--[![Get help on Slack](http://img.shields.io/badge/slack-nf--core%20%23viralrecon-4A154B?labelColor=000000&logo=slack)](https://nfcore.slack.com/channels/viralrecon)
-[![Watch on YouTube](http://img.shields.io/badge/youtube-nf--core-FF0000?labelColor=000000&logo=youtube)](https://www.youtube.com/c/nf-core)-->
 
 A public repository of **hybrid *de novo* assembly** pipeline maintained by ITER.
 
@@ -139,22 +129,16 @@ For more details about the output files and reports, please refer to the [output
 
 See [here](docs/benchmarking_code.md) a detailed use of each tool used for preprocessing, assembly, polishing, and evaluation.
 
-## Credits
-
-This pipeline was originally written by Adrián Muñoz-Barrera.
-
-<!-- TODO Add the reference to the paper -->
-
-<!-- TODO Add funding -->
-
 ## Contributions and Support
 
 If you would like to contribute to this pipeline, please see the [contributing guidelines](.github/CONTRIBUTING.md).
 
 Follow us on X: [@LabCflores](https://x.com/LabCflores)
 
-## Citations
+## Credits
 
-[Preprint](https://www.biorxiv.org/content/10.1101/2024.05.28.595812v1): Muñoz-Barrera, Adrián, Luis A. Rubio-Rodríguez, David Jáspez, Almudena Corrales, Itahisa Marcelino-Rodriguez, José M. Lorenzo-Salazar, Rafaela González-Montelongo, and Carlos Flores. 2024. “Benchmarking of Bioinformatics Tools for the Hybrid de Novo Assembly of Human Whole-Genome Sequencing Data.” bioRxiv.
+[Preprint](https://www.biorxiv.org/content/10.1101/2024.05.28.595812v1): Adrián Muñoz-Barrera, Luis A. Rubio-Rodríguez, David Jáspez, Almudena Corrales, Itahisa Marcelino-Rodriguez, José M. Lorenzo-Salazar, Rafaela González-Montelongo, and Carlos Flores. 2024. “Benchmarking of Bioinformatics Tools for the Hybrid de Novo Assembly of Human Whole-Genome Sequencing Data.” bioRxiv.
 
 An extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.
+
+This research was supported by...<TO COMPLETE>
