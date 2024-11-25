@@ -85,6 +85,9 @@ nextflow run main.nf \
 
 For more details and further functionality, please refer to the [usage documentation](docs/usage.md).
 
+>[!IMPORTANT]{title="Don't Panic"}
+> testing
+
 ## Pipeline output
 
 For more details about the output files and reports, please refer to the [output documentation](docs/output.md).
