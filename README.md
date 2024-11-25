@@ -85,8 +85,47 @@ nextflow run main.nf \
 
 For more details and further functionality, please refer to the [usage documentation](docs/usage.md).
 
->[!IMPORTANT]{title="Don't Panic"}
-> testing
+## Running the pipeline with test data
+
+To ensure the pipeline is set up correctly and functioning as expected, you can run it with the provided test data. The test data consists of a small subset of the human chromosome 22 sequence, specifically selected for quick and efficient testing. Follow these steps:
+
+1. Clone the repository
+First, clone the repository and navigate to the project directory:
+
+```bash
+git clone https://github.com/genomicsITER/hybridassembly
+cd hybridassembly
+```
+
+Test data is included in the repository under the test_data/ directory.
+
+2. Run the pipeline
+Execute the pipeline with the test data using the following command:
+
+```bash
+nextflow run main.nf \
+   -profile test,<docker/singularity/conda> \
+   -config test.config
+```
+
+3. Check the results
+Upon successful completion, the output files will be saved in the test_data/results directory. Review the output to verify that the pipeline ran correctly.
+
+4. Troubleshooting
+If you encounter errors, ensure:
+
+- The required dependencies (e.g., Nextflow, Docker/Singularity/Conda) are installed.
+- You are using a compatible environment.
+- Use the -resume flag to retry failed tasks without re-running completed ones:
+
+```bash
+nextflow run main.nf \
+   -profile test,<docker/singularity/conda> \
+   -config test.config \
+   -resume
+```
+
+For further assistance, feel free to open an issue in this repository.
 
 ## Pipeline output
 
