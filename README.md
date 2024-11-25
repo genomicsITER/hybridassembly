@@ -89,8 +89,9 @@ For more details and further functionality, please refer to the [usage documenta
 
 To ensure the pipeline is set up correctly and functioning as expected, you can run it with the provided test data. The test data consists of a small subset of the human chromosome 22 sequence, specifically selected for quick and efficient testing. Follow these steps:
 
-> 1. Clone the repository
-> First, clone the repository and navigate to the project directory:
+1. Clone the repository
+
+First, clone the repository and navigate to the project directory:
 
 ```bash
 git clone https://github.com/genomicsITER/hybridassembly
