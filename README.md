@@ -129,7 +129,7 @@ nextflow run main.nf \
    -resume
 ```
 
-For further assistance, feel free to open an issue in this repository.
+For further assistance, feel free to open an [issue](https://github.com/genomicsITER/hybridassembly/issues) in this repository.
 
 ## Pipeline output
 
