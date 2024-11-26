@@ -12,8 +12,9 @@ process TGS_GAPCLOSER {
     tuple val(meta), path(reads_fasta)
 
     output:
-    tuple val(meta), path("*.fasta"), emit: scaffolds_gapfilled
-    path "versions.yml"             , emit: versions
+    tuple val(meta), path("*.fasta")          , emit: scaffolds_gapfilled
+    tuple val(meta), path("*.gap_fill_detail"), emit: gap_fill_details
+    path "versions.yml"                       , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -25,10 +26,11 @@ process TGS_GAPCLOSER {
     tgsgapcloser $args --scaff $scaffolds --reads $reads_fasta --output tgsgapcloser
 
     mv tgsgapcloser*.scaff_seqs ${prefix}.fasta
+    mv tgsgapcloser.gap_fill_detail ${prefix}.gap_fill_detail
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        tgsgapcloser: \$( tgsgapcloser --help | head -2 | grep "Version" | cut -d":" -f2 | sed 's/ \|;//g' )
+        tgsgapcloser: \$( tgsgapcloser | grep "Version" | cut -d":" -f2 )
     END_VERSIONS
     """
 }

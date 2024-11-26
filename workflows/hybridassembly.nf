@@ -70,7 +70,7 @@ workflow HYBRIDASSEMBLY {
     //
     PREPROCESSING_PIPELINE ( ch_short, ch_long, ch_maskedshort_long )
     ch_multiqc_files = ch_multiqc_files.mix( PREPROCESSING_PIPELINE.out.preprocessing_multiqc_files )
-    ch_versions = ch_versions.mix( PREPROCESSING_PIPELINE.out.versions.first() )
+    ch_versions = ch_versions.mix( PREPROCESSING_PIPELINE.out.versions )
 
     //
     // MODULE: Run Flye on filtered and corrected reads
@@ -85,20 +85,20 @@ workflow HYBRIDASSEMBLY {
     // SUBWORKFLOW: Polishing subworkflow
     //
     POLISHING_PIPELINE ( ch_short, PREPROCESSING_PIPELINE.out.corrected_long_reads, FLYE.out.fasta )
-    ch_versions = ch_versions.mix( POLISHING_PIPELINE.out.versions.first() )
+    ch_versions = ch_versions.mix( POLISHING_PIPELINE.out.versions )
 
     //
     // SUBWORKFLOW: Polishing subworkflow
     //
     CURATION_PIPELINE ( PREPROCESSING_PIPELINE.out.corrected_long_reads, POLISHING_PIPELINE.out.polished_assembly )
-    ch_versions = ch_versions.mix( CURATION_PIPELINE.out.versions.first() )
+    ch_versions = ch_versions.mix( CURATION_PIPELINE.out.versions )
 
     //
     // SUBWORKFLOW: Assessment subworkflow
     //
     ASSESSMENT_PIPELINE ( ch_short, CURATION_PIPELINE.out.polished_assembly, params.fasta )
     ch_multiqc_files = ch_multiqc_files.mix( ASSESSMENT_PIPELINE.out.assessment_multiqc_files )
-    ch_versions = ch_versions.mix( ASSESSMENT_PIPELINE.out.versions.first() )
+    ch_versions = ch_versions.mix( ASSESSMENT_PIPELINE.out.versions )
 
     //
     // Collate and save software versions

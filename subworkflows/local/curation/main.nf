@@ -71,11 +71,11 @@ workflow CURATION_PIPELINE {
     //
     // MODULE: Correction and scaffolding with RagTag
     //
-    RAGTAG_CORRECT ( PURGEDUPS_GETSEQS.out.purged, [ [:], params.fasta ] )
+    RAGTAG_CORRECT ( PURGEDUPS_GETSEQS.out.purged, [ [:], file(params.fasta) ] )
     ch_versions = ch_versions.mix( RAGTAG_CORRECT.out.versions.first() )
 
-    RAGTAG_SCAFFOLD ( RAGTAG_CORRECT.out.corrected_fasta, [ [:], params.fasta ] )
-    ch_versions = ch_versions.mix( RAGTAG_CORRECT.out.versions.first() )
+    RAGTAG_SCAFFOLD ( RAGTAG_CORRECT.out.corrected_fasta, [ [:], file(params.fasta) ] )
+    ch_versions = ch_versions.mix( RAGTAG_SCAFFOLD.out.versions.first() )
 
     //
     // MODULE: Close gaps with TGS-GapCloser

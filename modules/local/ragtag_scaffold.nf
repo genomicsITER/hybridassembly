@@ -13,6 +13,8 @@ process RAGTAG_SCAFFOLD {
 
     output:
     tuple val(meta), path("*.fasta"), emit: scaffold_fasta
+    tuple val(meta), path("*.agp")  , emit: scaffold_agp
+    tuple val(meta), path("*.stats"), emit: scaffold_stats
     path "versions.yml"             , emit: versions
 
     when:
@@ -24,11 +26,13 @@ process RAGTAG_SCAFFOLD {
     """
     ragtag.py scaffold -o . $reference $fasta
 
+    mv ragtag.scaffold.agp ${prefix}.agp
     mv ragtag.scaffold.fasta ${prefix}.fasta
+    mv ragtag.scaffold.stats ${prefix}.stats
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        ragtag_scaffold: \$( ragtag.py --version )
+        ragtag: \$( ragtag.py --version )
     END_VERSIONS
     """
 }

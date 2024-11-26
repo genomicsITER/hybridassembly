@@ -95,4 +95,5 @@ workflow PREPROCESSING_PIPELINE {
     versions                    = ch_versions
     corrected_long_reads        = REPLACE_IUPAC.out.reads
     preprocessing_multiqc_files = ch_multiqc_files
+
 }

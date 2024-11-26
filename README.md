@@ -141,4 +141,4 @@ Follow us on X: [@LabCflores](https://x.com/LabCflores)
 
 An extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.
 
-This research was supported by...<TO COMPLETE>
+This research was funded by Ministerio de Ciencia e Innovación (RTC-2017-6471-1; AEI/FEDER, UE), co-financed by the European Regional Development Funds ‘A way of making Europe’ from the European Union; Cabildo Insular de Tenerife (CGIEU0000219140); by the agreements OA17/008 and OA23/043 with Instituto Tecnológico y de Energías Renovables (ITER) to strengthen scientific and technological education, training, research, development and innovation in Genomics, Epidemiological surveillance based on sequencing, Personalized Medicine and Biotechnology; and by Convenio Marco de Cooperación Consejería de Educación-Cabildo Insular de Tenerife 2021–2025 (CGIAC0000014697).

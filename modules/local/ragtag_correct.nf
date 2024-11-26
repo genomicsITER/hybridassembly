@@ -28,7 +28,7 @@ process RAGTAG_CORRECT {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        ragtag_correct: \$( ragtag.py --version )
+        ragtag: \$( ragtag.py --version )
     END_VERSIONS
     """
 }

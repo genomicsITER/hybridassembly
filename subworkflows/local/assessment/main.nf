@@ -37,7 +37,7 @@ workflow ASSESSMENT_PIPELINE {
     //
     // MODULE: Run QUAST
     //
-    QUAST ( curated_assembly, [ [:], reference ], [[:],[]] )
+    QUAST ( curated_assembly, [ [:], file(reference) ], [[:],[]] )
     ch_multiqc_files = ch_multiqc_files.mix( QUAST.out.results.collect{it[1]} )
     ch_versions = ch_versions.mix( QUAST.out.versions.first() )
 
