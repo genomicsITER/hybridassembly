@@ -21,8 +21,8 @@ The **hybridassembly** pipeline is built using [Nextflow](https://www.nextflow.i
 
 <h1>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/images/Assembly_pipeline_GitHub.drawio.svg">
-    <img alt="Hybrid assembly pipeline" src="docs/images/Assembly_pipeline_GitHub.drawio.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/Assembly_pipeline_GitHub.drawio.jpg">
+    <img alt="Hybrid assembly pipeline" src="docs/images/Assembly_pipeline_GitHub.drawio.jpg">
   </picture>
 </h1>
 
